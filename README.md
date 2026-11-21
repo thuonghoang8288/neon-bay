@@ -50,6 +50,15 @@ loud.
 | P / Esc | Pause |
 | N | Mute |
 
+## How to play
+
+Press `M` to start the next story mission and follow the marker on the
+minimap. Short on cash or ammo? Green crates on the sidewalks hold health and
+ammo pickups. Stealing a car or hitting a pedestrian raises your wanted level —
+if the heat gets too hot, ditch the car, lie low, and let the stars decay
+before the next job. Getting busted or wasted costs you half your cash, so
+bank your mission rewards by staying alive.
+
 ## How to run
 
 ```sh

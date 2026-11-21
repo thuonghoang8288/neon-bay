@@ -69,10 +69,18 @@ function enterCar(G, found) {
 function exitCar(G) {
   const car = G.playerCar;
   car.speed = 0;
-  const side = Math.cos(car.angle + Math.PI / 2) * 40;
-  const sideY = Math.sin(car.angle + Math.PI / 2) * 40;
-  G.player.x = car.x + side;
-  G.player.y = car.y + sideY;
+  const px = Math.cos(car.angle + Math.PI / 2);
+  const py = Math.sin(car.angle + Math.PI / 2);
+  // Step out on the side that is not inside a building; fall back to the
+  // other side, and stay inside the world like on-foot movement does.
+  let sx = car.x + px * 40;
+  let sy = car.y + py * 40;
+  if (collidesWithBuilding(G.city, sx, sy, PLAYER.radius)) {
+    sx = car.x - px * 40;
+    sy = car.y - py * 40;
+  }
+  G.player.x = clamp(sx, 20, WORLD_W - 20);
+  G.player.y = clamp(sy, 20, WORLD_H - 20);
   G.player.inCar = false;
   G.playerCar = null;
   if (!G.city.parkedCars.includes(car)) {
